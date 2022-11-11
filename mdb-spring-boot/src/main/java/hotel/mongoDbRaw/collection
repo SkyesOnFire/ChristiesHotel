@@ -1,0 +1,65 @@
+use("somativa")
+// # Hotel
+// Valida se o _id, nome, endereço e coordenadas estão preenchidas eestão no tipo certo
+db.createCollection("hotel", {
+validator: {
+$jsonSchema: {
+bsonType: "object",
+title: "hotel validation",
+required: ["_id", "nome", "endereco", "coordenadas"],
+properties: {
+_id: {
+bsonType: "objectId",
+description: "_id is a objectId and is required"
+},
+nome: {
+bsonType: "string",
+description: "nome is a string and is required"
+},
+endereco: {
+bsonType: "string", description: "endereco is a string and is required"
+},
+coordenadas: {
+bsonType: "string",
+description: "coordenadas is a string and is
+required"
+}
+}
+}
+}
+})
+db.quarto.drop();
+// # Quarto
+// Valida se o _id, numero, tipo, valor, adaptado, hotel_id estão
+preenchidas e
+// estão no tipo certo e se o tipo está dentro dos valores permitidos
+db.createCollection("quarto", {
+validator: {
+$jsonSchema: {
+bsonType: "object",
+title: "quarto validation",
+required: [
+"_id", "numero", "tipo", "valor", "adaptado",
+"hotel_id"
+],
+properties: {
+_id: {
+bsonType: "objectId",
+description: "_id is a objectId and is required"
+},
+numero: {
+bsonType: "number",
+description: "nome is a number and is required"
+},
+tipo: {
+bsonType: "string",
+description: "endereco is a string and is required",
+enum: [
+"solteiro", "casal", "família",
+"presidencial"
+]
+},
+valor: {
+bsonType: "number",
+description: "valor is a number and is required"
+},

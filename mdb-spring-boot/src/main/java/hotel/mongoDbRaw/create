@@ -1,0 +1,69 @@
+Hotel
+{
+  _id: <ObjectId1>,
+  nome: "Hotel 1",
+  endereco: "Rua das Palmeiras 400",
+  coordenadas: "-10 200"
+}
+
+Quarto
+{
+  _id: <ObjectId2>,
+  numero: 12,
+  tipo: "Solteiro",
+  valor: 123.12,
+  adaptado: false,
+  hotel_id: <ObjectId1>
+}
+
+Cliente
+{
+  _id: <ObjectId3>,
+  nome: "Pedro",
+  endereco: "Rua Santa Catarina 534",
+  nacionalidade: "Brasileiro",
+  email: "pedro.lucho@pucpr.edu.br",
+  telefone: "41 99177-3664",
+  hotel_id: <ObjectId1>
+}
+
+Funcionario
+{
+  _id: <ObjectId4>,
+  nome: "Joyce",
+  tipo: "atendente",
+  hotel_id: <ObjectId1>
+}
+
+Reserva
+{
+  _id: <ObjectId5>,
+  tipo_quarto: "Solteiro",
+  checkin: new
+  Date(),
+  checkout: new
+  Date(),
+  quarto_id: <ObjectId2>,
+  cliente_id: <ObjectId3>,
+  funcionario_id: <ObjectId4>,
+}
+Conta
+{
+  _id: <ObjectId6>,
+  consumo: [
+    {
+      item: 'Água',
+      valor: 10
+    },
+    {
+      item: 'Água',
+      valor: 10
+    },
+  ],
+  nf: null,
+  metodo_pagamento: null,
+  fg_pago: false,
+  cliente_id: <ObjectId3>,
+  reserva_id: <ObjectId5>,
+  quarto_id: <ObjectId2>
+}
