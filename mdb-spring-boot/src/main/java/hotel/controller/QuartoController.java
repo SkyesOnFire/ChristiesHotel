@@ -37,7 +37,7 @@ public class QuartoController {
         return quartoRepository.save(quartoItem);
     }
 
-    @RequestMapping(value = "/quarto/{id}", method =  RequestMethod.PUT)
+    @RequestMapping(value = "/quarto/trocarNumero/{id}", method =  RequestMethod.PUT)
     public ResponseEntity<QuartoItem> Put(@PathVariable(value = "id") String id, @Validated @RequestBody QuartoItem newQuarto)
     {
         Optional<QuartoItem> oldQuarto = quartoRepository.findById(id);

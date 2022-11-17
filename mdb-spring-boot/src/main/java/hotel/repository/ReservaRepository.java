@@ -5,12 +5,12 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
-
+import java.util.Optional;
 
 public interface ReservaRepository extends MongoRepository<ReservaItem, String> {
 	
-	@Query("{name:'?0'}")
-	ReservaItem findClienteItemByName(String nome);
+	@Query("{tipo:'?0'}")
+	Optional<ReservaItem> findReservaItemByQuartoItem_Tipo(String quartoTipo);
 
 //	@Query("{quarto:'?0'}")
 //	QuartoItem

@@ -41,7 +41,7 @@ public class ClienteController {
         return clienteRepository.save(clienteItem);
     }
 
-    @RequestMapping(value = "/pessoa/{id}", method =  RequestMethod.PUT)
+    @RequestMapping(value = "/pessoa/trocarNome/{id}", method =  RequestMethod.PUT)
     public ResponseEntity<ClienteItem> Put(@PathVariable(value = "id") String id, @Validated @RequestBody ClienteItem newCliente)
     {
         Optional<ClienteItem> oldCliente = clienteRepository.findById(id);

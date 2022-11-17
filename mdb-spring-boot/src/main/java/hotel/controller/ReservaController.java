@@ -31,6 +31,16 @@ public class ReservaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @RequestMapping(value = "/reserva/count/{tipoQuarto}", method = RequestMethod.GET)
+    public ResponseEntity<ReservaItem> GetReservasAtivas(@PathVariable(value = "tipoQuarto") String tipoQuarto)
+    {
+        Optional<ReservaItem> reservaItem = reservaRepository.findReservaItemByQuartoItem_Tipo(tipoQuarto);
+        if(reservaItem.isPresent())
+            return new ResponseEntity<ReservaItem>(reservaItem.get(), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @RequestMapping(value = "/reserva", method =  RequestMethod.POST)
     public ReservaItem Post(@Validated @RequestBody ReservaItem reservaItem)
     {
@@ -43,9 +53,9 @@ public class ReservaController {
         Optional<ReservaItem> oldReserva = reservaRepository.findById(id);
         if(oldReserva.isPresent()){
             ReservaItem reservaItem = oldReserva.get();
-            reservaItem.setCheckin(newReserva.getCheckin());
-            reservaRepository.save(reservaItem);
-            return new ResponseEntity<ReservaItem>(reservaItem, HttpStatus.OK);
+            reservaRepository.delete(reservaItem);
+            reservaRepository.save(newReserva);
+            return new ResponseEntity<ReservaItem>(newReserva, HttpStatus.OK);
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
