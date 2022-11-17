@@ -1,9 +1,9 @@
 package hotel.Enums;
 
 public enum Cargo {
-    Recepcionista,
-    Camareiro,
-    Gerente,
-    Faxineiro,
-    Cozinheiro
+    RECEPCIONISTA,
+    CAMAREIRO,
+    GERENTE,
+    FAXINEIRO,
+    COZINHEIRO
 }
